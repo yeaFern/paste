@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yeaFern - Paste</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Source+Code+Pro&display=swap');
+
+        html, body {
+            margin: 0;
+            background-color: #2D2D2D;
+        }
+
+        .header {
+            width: 100%;
+            height: 35px;
+            background-color: #1E1E1E;
+            position: fixed;
+        }
+
+        .header a {
+            float: left;
+            font-family: 'Roboto', sans-serif;
+            height: 100%;
+            line-height: 35px;
+            color: white;
+            padding: 0 12px 0 12px;
+            text-decoration: none;
+        }
+
+        .header a:hover {
+            background-color: #4C3C56;
+        }
+
+        .selected {
+            background-color: #624D6D !important;
+        }
+
+        .sub-header {
+            height: 25px;
+            width: 100%;
+            background-color: #252526;
+            margin-top: 35px;
+            position: fixed;
+        }
+
+        .sub-header a {
+            float: right;
+            font-family: 'Roboto', sans-serif;
+            height: 100%;
+            line-height: 25px;
+            color: white;
+            padding: 0 12px 0 12px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        textarea {
+            border: none;
+            margin: 0;
+            margin-top: 60px;
+            padding: 0;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            width: 100%;
+            height: calc(100vh - 60px);
+            overflow: visible;
+            resize: none;
+            font-family: 'Source Code Pro', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="#">Home</a>
+        <a href="#" class="selected">Paste</a>
+        <a href="#">Blog</a>
+    </div>
+    <div class="sub-header">
+        <a onclick="clear()" style="background-color: #DB2A27">Clear</a>
+        <a onclick="paste()" style="background-color: #4C9F4C">Save</a>
+    </div>
+
+    <textarea id="code" spellcheck="false"></textarea>
+
+    <script>
+        function paste() {
+            fetch("/new", {
+                method: "post",
+                credentials: "include",
+                body: document.getElementById("code").value
+            }).then(response => {
+                if(response.ok) {
+                    response.json().then(json => {
+                        document.location.href = "/" + json.id;
+                    });
+                } else {
+                    alert("error " + response.status);
+                }
+            });
+        }
+
+        function clear() {
+            // uugggghhh why doesn't this work???
+            document.getElementById("code").value = "";
+        }
+    </script>
+
+</body>
+</html>

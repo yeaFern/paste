@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yeaFern - Paste</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Source+Code+Pro&display=swap');
+
+        html, body {
+            margin: 0;
+            background-color: #2D2D2D;
+        }
+
+        .header {
+            width: 100%;
+            height: 35px;
+            background-color: #1E1E1E;
+            position: fixed;
+            user-select: none;
+        }
+
+        .header a {
+            float: left;
+            font-family: 'Roboto', sans-serif;
+            height: 100%;
+            line-height: 35px;
+            color: white;
+            padding: 0 12px 0 12px;
+            text-decoration: none;
+        }
+
+        .header a:hover {
+            background-color: #4C3C56;
+        }
+
+        .selected {
+            background-color: #624D6D !important;
+        }
+
+        .sub-header {
+            height: 25px;
+            width: 100%;
+            background-color: #252526;
+            margin-top: 35px;
+            position: fixed;
+            user-select: none;
+        }
+
+        .sub-header a {
+            float: right;
+            font-family: 'Roboto', sans-serif;
+            height: 100%;
+            line-height: 25px;
+            color: white;
+            padding: 0 12px 0 12px;
+            text-decoration: none;
+        }
+
+        .code-box {
+            border: none;
+            margin: 0;
+            padding: 0;
+            padding-top: 60px;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            width: 100%;
+            height: calc(100vh - 60px);
+            overflow: visible;
+            resize: none;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .link {
+            line-height: 21px !important;
+            float: left !important;
+            color: #4A4A4C !important;
+            font-family: 'Source Code Pro', monospace !important;
+        }
+
+        pre {
+            margin: 0;
+        }
+    </style>
+
+    <link rel="stylesheet" href="/code_style.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+    <div class="header">
+        <a href="#">Home</a>
+        <a href="#" class="selected">Paste</a>
+        <a href="#">Blog</a>
+    </div>
+    <div class="sub-header">
+        <!--<a href="#" onclick="paste()" style="background-color: #DB2A27">Clear</a>-->
+        <!--<a href="#" onclick="paste()" style="background-color: #4C9F4C">Save</a>-->
+        <a class="link" href="#"><%= "/" + id; %></a>
+    </div>
+
+    <div class="code-box">
+        <pre><code><%= content; %></code></pre>
+    </div>
+</body>
+</html>
